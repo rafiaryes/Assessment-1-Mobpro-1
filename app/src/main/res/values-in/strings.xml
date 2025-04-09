@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Konversi Suhu</string>
+    <string name="intro">Konversi suhu antara Celsius, Fahrenheit, dan Kelvin. Masukkan nilai suhu
+        dan pilih satuan yang diinginkan.</string>
+    <string name="nilai_suhu">Nilai Suhu</string>
+    <string name="dari">Dari</string>
 </resources>
