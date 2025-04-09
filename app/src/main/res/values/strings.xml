@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Temperature Conversion</string>
-    <string name="intro">Konversi suhu antara Celsius, Fahrenheit, dan Kelvin. Masukkan nilai suhu
-        dan pilih satuan yang diinginkan.</string>
-    <string name="nilai_suhu">Nilai Suhu</string>
-    <string name="dari">Dari</string>
-    <string name="ke">Ke</string>
+    <string name="intro">Convert temperature between Celsius, Fahrenheit, and Kelvin. Enter the
+        temperature value and select the desired unit.</string>
+    <string name="nilai_suhu">Temperature Value</string>
+    <string name="dari">From</string>
+    <string name="ke">To</string>
+    <string name="konversi">Conversion</string>
 </resources>
