@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -56,6 +59,10 @@ fun MainScreen() {
 fun ScreenContent(modifier: Modifier = Modifier) {
     var inputValue by remember { mutableStateOf("") }
     var inputError by remember { mutableStateOf(false) }
+    var selectedUnitFrom by remember { mutableStateOf("Celcius") }
+    var selectedUnitTo by remember { mutableStateOf("Farenheit") }
+
+    val temperatureUnits = listOf("Celcius", "Farenheit", "Kelvin", "Reamur")
 
     Column(
         modifier = modifier
@@ -83,11 +90,67 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth()
         )
 
+        Row {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = stringResource(R.string.dari))
+                DropdownMenuTemperature(
+                    options = temperatureUnits,
+                    selectedOption = selectedUnitFrom,
+                    onOptionSelected = { selectedUnitFrom = it }
+                )
+            }
 
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = stringResource(R.string.ke))
+                DropdownMenuTemperature(
+                    options = temperatureUnits,
+                    selectedOption = selectedUnitTo,
+                    onOptionSelected = { selectedUnitTo = it }
+                )
+            }
+        }
     }
 }
 
-
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DropdownMenuTemperature(
+    options: List<String>,
+    selectedOption: String,
+    onOptionSelected: (String) -> Unit
+) {
+    var expanded by remember { mutableStateOf(false) }
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = { expanded = !expanded }
+    ) {
+        OutlinedTextField(
+            modifier = Modifier
+                .menuAnchor()
+                .fillMaxWidth(),
+            readOnly = true,
+            value = selectedOption,
+            onValueChange = {},
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+            }
+        )
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = {expanded = false}
+        ) {
+            options.forEach{ option ->
+                DropdownMenuItem(
+                    text = { Text(text = option) },
+                    onClick = {
+                        onOptionSelected(option)
+                        expanded = false
+                    }
+                )
+            }
+        }
+    }
+}
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
