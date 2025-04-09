@@ -56,9 +56,6 @@ fun MainScreen() {
 fun ScreenContent(modifier: Modifier = Modifier) {
     var inputValue by remember { mutableStateOf("") }
     var inputError by remember { mutableStateOf(false) }
-    var selectedUnitForm by remember { mutableStateOf("Celcius") }
-    var selectedUnitTo by remember { mutableStateOf("Farenheit") }
-    var result by remember { mutableStateOf("") }
 
     Column(
         modifier = modifier
