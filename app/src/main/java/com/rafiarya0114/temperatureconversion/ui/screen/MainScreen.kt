@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
@@ -20,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -90,6 +93,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
             value = inputValue,
             onValueChange = { inputValue = it },
             label = { Text (text = stringResource(R.string.nilai_suhu)) },
+            supportingText = {ErrorHint(inputError)},
             isError = inputError,
             singleLine = true,
             keyboardOptions = KeyboardOptions(
@@ -201,6 +205,12 @@ fun DropdownMenuTemperature(
     }
 }
 
+@Composable
+fun ErrorHint(isError: Boolean) {
+    if (isError) {
+        Text(text = stringResource(R.string.input_invalid))
+    }
+}
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)

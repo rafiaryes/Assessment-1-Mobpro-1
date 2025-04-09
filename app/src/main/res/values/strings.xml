@@ -9,6 +9,7 @@
     <string name="dari">From</string>
     <string name="ke">To</string>
     <string name="konversi">Conversion</string>
+    <string name="input_invalid">Tidak Boleh Kosong</string>
     <string name="hasil_konversi">Hasil: %1$.2f</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">%s° %s = %s° %s</string>

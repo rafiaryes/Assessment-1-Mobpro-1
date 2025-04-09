@@ -10,6 +10,7 @@
     <string name="dari">Dari</string>
     <string name="ke">Ke</string>
     <string name="konversi">Konversi</string>
+    <string name="input_invalid">Tidak Boleh Kosong</string>
     <string name="hasil_konversi">Hasil: %s</string>
     <string name="bagikan">Bagikan</string>
     <string name="bagikan_template">%s° %s = %s° %s</string>
