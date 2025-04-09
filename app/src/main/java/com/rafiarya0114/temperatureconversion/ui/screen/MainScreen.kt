@@ -1,6 +1,7 @@
 package com.rafiarya0114.temperatureconversion.ui.screen
 
 import android.content.res.Configuration
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,10 +14,12 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -63,10 +66,11 @@ fun MainScreen() {
 fun ScreenContent(modifier: Modifier = Modifier) {
     var inputValue by remember { mutableStateOf("") }
     var inputError by remember { mutableStateOf(false) }
-    var selectedUnitFrom by remember { mutableStateOf("Celcius") }
-    var selectedUnitTo by remember { mutableStateOf("Farenheit") }
+    var selectedUnitFrom by remember { mutableStateOf("Celsius") }
+    var selectedUnitTo by remember { mutableStateOf("Fahrenheit") }
+    var result by remember { mutableStateOf("") }
 
-    val temperatureUnits = listOf("Celcius", "Farenheit", "Kelvin", "Reamur")
+    val temperatureUnits = listOf("Celsius", "Fahrenheit", "Kelvin")
 
     Column(
         modifier = modifier
@@ -115,17 +119,47 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         }
 
         Button(
-            onClick = {},
+            onClick = {
+                inputError = inputValue.isEmpty()
+                if (inputError) return@Button
+
+                try {
+                    val value = inputValue.toDoubleOrNull() ?: 0.0
+                    result = convertTemperature(value, selectedUnitFrom, selectedUnitTo)
+                } catch (e: Exception) {
+                    inputError = true
+                }
+            },
             modifier = Modifier.padding(top = 8.dp),
             contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
         ) {
             Text(text = stringResource(R.string.konversi))
         }
+
+        if(result.isNotEmpty()) {
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp))
+            Text(
+                text = stringResource(R.string.hasil_konversi, result),
+                style = MaterialTheme.typography.headlineMedium
+            )
+        }
     }
 }
 
-
+fun convertTemperature(value: Double, from: String, to: String): String {
+    val result = when {
+        from.equals(to, ignoreCase = true) -> value
+        from.equals("Celsius", ignoreCase = true) && to.equals("Fahrenheit", ignoreCase = true) -> value * 9.0/5.0 + 32.0
+        from.equals("Celsius", ignoreCase = true) && to.equals("Kelvin", ignoreCase = true) -> value + 273.15
+        from.equals("Fahrenheit", ignoreCase = true) && to.equals("Celsius", ignoreCase = true) -> (value - 32.0) * 5.0/9.0
+        from.equals("Fahrenheit", ignoreCase = true) && to.equals("Kelvin", ignoreCase = true) -> (value - 32.0) * 5.0/9.0 + 273.15
+        from.equals("Kelvin", ignoreCase = true) && to.equals("Celsius", ignoreCase = true) -> value - 273.15
+        from.equals("Kelvin", ignoreCase = true) && to.equals("Fahrenheit", ignoreCase = true) -> (value - 273.15) * 9.0/5.0 + 32.0
+        else -> value
+    }
+    return "%.2f".format(result)
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -166,6 +200,7 @@ fun DropdownMenuTemperature(
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
