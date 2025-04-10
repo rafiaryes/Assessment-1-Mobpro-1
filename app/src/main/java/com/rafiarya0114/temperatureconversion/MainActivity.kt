@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rafiarya0114.temperatureconversion.navigation.SetupNavGraph
 import com.rafiarya0114.temperatureconversion.ui.screen.MainScreen
 import com.rafiarya0114.temperatureconversion.ui.theme.TemperatureConversionTheme
 
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TemperatureConversionTheme {
-                MainScreen()
+                SetupNavGraph()
             }
         }
     }

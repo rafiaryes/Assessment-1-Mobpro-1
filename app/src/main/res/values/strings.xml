@@ -3,9 +3,6 @@
     <string name="intro">Convert temperature between Celsius, Fahrenheit, and Kelvin. Enter the
         temperature value and select the desired unit.</string>
     <string name="nilai_suhu">Temperature Value</string>
-    <string name="c">Celcius</string>
-    <string name="k">Kelvin</string>
-    <string name="f">Farenheit</string>
     <string name="dari">From</string>
     <string name="ke">To</string>
     <string name="konversi">Conversion</string>

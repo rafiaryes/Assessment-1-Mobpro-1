@@ -4,9 +4,6 @@
     <string name="intro">Konversi suhu antara Celsius, Fahrenheit, dan Kelvin. Masukkan nilai suhu
         dan pilih satuan yang diinginkan.</string>
     <string name="nilai_suhu">Nilai Suhu</string>
-    <string name="c">Celcius</string>
-    <string name="k">Kelvin</string>
-    <string name="f">Farenheit</string>
     <string name="dari">Dari</string>
     <string name="ke">Ke</string>
     <string name="konversi">Konversi</string>
