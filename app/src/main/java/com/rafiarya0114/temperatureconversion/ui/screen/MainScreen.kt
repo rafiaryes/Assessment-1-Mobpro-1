@@ -34,6 +34,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -84,11 +85,11 @@ fun MainScreen(navController: NavHostController) {
 
 @Composable
 fun ScreenContent(modifier: Modifier = Modifier) {
-    var inputValue by remember { mutableStateOf("") }
-    var inputError by remember { mutableStateOf(false) }
-    var selectedUnitFrom by remember { mutableStateOf("Celsius") }
-    var selectedUnitTo by remember { mutableStateOf("Fahrenheit") }
-    var result by remember { mutableStateOf("") }
+    var inputValue by rememberSaveable { mutableStateOf("") }
+    var inputError by rememberSaveable { mutableStateOf(false) }
+    var selectedUnitFrom by rememberSaveable { mutableStateOf("Celsius") }
+    var selectedUnitTo by rememberSaveable { mutableStateOf("Fahrenheit") }
+    var result by rememberSaveable { mutableStateOf("") }
 
     val temperatureUnits = listOf("Celsius", "Fahrenheit", "Kelvin")
     val context = LocalContext.current
