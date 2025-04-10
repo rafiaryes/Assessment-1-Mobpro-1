@@ -114,7 +114,7 @@ fun ScreenContent(modifier: Modifier = Modifier) {
         )
 
         Image(
-            painter = painterResource(id = R.drawable.thermometer),
+            painter = painterResource(id = R.drawable.temperature),
             contentDescription = "",
             contentScale = ContentScale.Crop,
             modifier = Modifier.size(150.dp)
