@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Temperature Conversion</string>
+    <string name="app_name">Temperature Converter</string>
     <string name="intro">Convert temperature between Celsius, Fahrenheit, and Kelvin. Enter the
         temperature value and select the desired unit.</string>
     <string name="nilai_suhu">Temperature Value</string>
