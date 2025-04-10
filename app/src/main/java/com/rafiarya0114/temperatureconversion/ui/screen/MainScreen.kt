@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenuItem
@@ -20,6 +22,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -44,6 +48,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.rafiarya0114.temperatureconversion.R
+import com.rafiarya0114.temperatureconversion.navigation.Screen
 import com.rafiarya0114.temperatureconversion.ui.theme.TemperatureConversionTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -58,7 +63,18 @@ fun MainScreen(navController: NavHostController) {
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = MaterialTheme.colorScheme.onErrorContainer,
                     titleContentColor = MaterialTheme.colorScheme.errorContainer,
-                )
+                ),
+                actions = {
+                    IconButton(onClick = {
+                        navController.navigate(Screen.About.route)
+                    }) {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = stringResource(R.string.tentang_aplikasi),
+                            tint = MaterialTheme.colorScheme.errorContainer
+                        )
+                    }
+                }
             )
         }
     ) { innerPadding ->
