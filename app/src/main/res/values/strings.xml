@@ -9,6 +9,7 @@
     <string name="input_invalid">Tidak Boleh Kosong</string>
     <string name="hasil_konversi">Hasil: %1$.2f</string>
     <string name="bagikan">Bagikan</string>
+    <string name="mengerti">Mengerti</string>
     <string name="bagikan_template">%s° %s = %s° %s</string>
     <string name="tentang_aplikasi">Tentang Aplikasi</string>
     <string name="copyright">Konversi Suhu merupakan aplikasi untuk mengkonversi antara satuan suhu Celsius, Fahrenheit, dan Kelvin.
